@@ -181,7 +181,7 @@ def write_interfaces(file, interfaces):
 
 			print(f"   o {method['methodname']}")
 
-			file.write(f"{method['returntype']} {method['methodname_flat']}(")
+			file.write(f"{method['returntype']} {method['methodname_flat']}({interface['classname']} * {interface['classname'][0].lower() + interface['classname'][1:]}, ")
 
 			parameter_count = len(method["params"])
 			for index, parameter in enumerate(method["params"]):
