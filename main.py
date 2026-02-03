@@ -181,10 +181,11 @@ def write_interfaces(file, interfaces):
 
 			print(f"   o {method['methodname']}")
 
-			file.write(f"{method['returntype']} {method['methodname_flat']}({interface['classname']} * {interface['classname'][0].lower() + interface['classname'][1:]}, ")
+			file.write(f"{method['returntype']} {method['methodname_flat']}(")
 
-			parameter_count = len(method["params"])
-			for index, parameter in enumerate(method["params"]):
+			parameters = method["params"] + [{"paramtype": interface['classname'], "paramname": interface['classname'][0].lower() + interface['classname'][1:]}]
+			parameter_count = len(parameters)
+			for index, parameter in enumerate(parameters):
 				file.write(f"{fix_pointer_reference(fix_colons(parameter['paramtype']))} {parameter['paramname']}")
 
 				if index + 1 != parameter_count:
